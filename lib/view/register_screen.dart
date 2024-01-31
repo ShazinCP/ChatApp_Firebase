@@ -48,22 +48,24 @@ class RegisterScreen extends StatelessWidget {
             obscureText: true,
             controller: _confirmPasswordController,
           ),
+          const SizedBox(height: 25),
           ButtonWidget(
             onTap: () => register(context),
             text: 'Register',
           ),
           const SizedBox(height: 25),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Already have an account",
+                "Already have an account?  ",
                 style: TextStyle(color: Theme.of(context).colorScheme.primary),
               ),
               GestureDetector(
                 onTap: onTap,
-                child: const Text(
+                child: Text(
                   "Login now",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.bold,color: Theme.of(context).colorScheme.primary),
                 ),
               ),
             ],

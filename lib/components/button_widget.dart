@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class ButtonWidget extends StatelessWidget {
-
   String text;
   final void Function()? onTap;
 
-   ButtonWidget({super.key,required this.text,required this.onTap});
-
+  ButtonWidget({
+    super.key,
+    required this.text,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,9 @@ class ButtonWidget extends StatelessWidget {
         ),
         padding: const EdgeInsets.all(25),
         margin: const EdgeInsets.symmetric(horizontal: 25),
-        child: const Center(child: Text("Button"),),
+        child: Center(
+          child: Text(text),
+        ),
       ),
     );
   }

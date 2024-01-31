@@ -40,7 +40,8 @@ class ChatScreen extends StatelessWidget {
           // display all messages
           Expanded(
             child: _buildMessageList(),
-          )
+          ),
+          _buildUserInput(),
         ],
       ),
     );
@@ -87,5 +88,4 @@ class ChatScreen extends StatelessWidget {
       ],
     );
   }
-  
 }

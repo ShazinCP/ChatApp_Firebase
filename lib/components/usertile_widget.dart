@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class UserTileWidget extends StatelessWidget {
+
+  String text;
+  final void Function()? onTap;
+  
   UserTileWidget({
     super.key,
     required this.text,
     required this.onTap,
   });
 
-  String text;
-  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {

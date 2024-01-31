@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class TextFieldWidget extends StatelessWidget {
+  
+  String hintText;
+  final bool obscureText;
+  final TextEditingController controller;
+
   TextFieldWidget(
       {super.key,
       required this.hintText,
       required this.obscureText,
       required this.controller});
 
-  String hintText;
-  final bool obscureText;
-  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {

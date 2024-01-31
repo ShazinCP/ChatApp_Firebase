@@ -41,22 +41,24 @@ class LoginScreen extends StatelessWidget {
             obscureText: true,
             controller: _passwordController,
           ),
+          const SizedBox(height: 25),
           ButtonWidget(
             onTap: () => login(context),
             text: 'Login',
           ),
           const SizedBox(height: 25),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Not a member?",
+                "Not a member?  ",
                 style: TextStyle(color: Theme.of(context).colorScheme.primary),
               ),
               GestureDetector(
                 onTap: onTap,
-                child: const Text(
+                child: Text(
                   "Register now",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.bold,color: Theme.of(context).colorScheme.primary),
                 ),
               ),
             ],

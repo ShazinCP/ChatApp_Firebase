@@ -37,7 +37,7 @@ class AuthServices {
         email: email,
         password: password,
       );
-
+        // save user info in a separate doc
       _firestore.collection("Users").doc(userCredential.user!.uid).set({
         'uid': userCredential.user!.uid,
         'email': email,

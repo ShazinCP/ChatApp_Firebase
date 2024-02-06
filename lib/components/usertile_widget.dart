@@ -21,7 +21,7 @@ class UserTileWidget extends StatelessWidget {
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(12),),
-            margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 25),
+            margin: const EdgeInsets.symmetric(vertical: 8,horizontal: 25),
             padding: const EdgeInsets.all(20),
         child: Row(
           children: [

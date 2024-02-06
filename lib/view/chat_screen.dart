@@ -1,3 +1,4 @@
+import 'package:chat_app/components/chatbubble_widget.dart';
 import 'package:chat_app/components/textfields_widget.dart';
 import 'package:chat_app/services/auth/auth_services.dart';
 import 'package:chat_app/services/chat/chat_services.dart';
@@ -70,22 +71,57 @@ class ChatScreen extends StatelessWidget {
 
   Widget _buildMessageItem(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-    return Text(data["message"]);
+
+    // is current user
+    bool isCurrentUser = data['senderID'] == _authService.getCurrentUser()!.uid;
+
+    var alignment =
+        isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
+
+    return Container(
+      alignment: alignment,
+      child: Column(
+        crossAxisAlignment:
+            isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          ChatBubble(
+            message: data["message"],
+            isCurrentUser: isCurrentUser,
+          )
+        ],
+      ),
+    );
   }
 
   // build message input
   Widget _buildUserInput() {
-    return Row(
-      children: [
-        Expanded(
-          child: TextFieldWidget(
-            hintText: "Type a message",
-            obscureText: false,
-            controller: messageController,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 50.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: TextFieldWidget(
+              hintText: "Type a message",
+              obscureText: false,
+              controller: messageController,
+            ),
           ),
-        ),
-        IconButton(onPressed: sendMessage, icon: const Icon(Icons.arrow_upward))
-      ],
+          Container(
+            decoration: const BoxDecoration(
+              color: Colors.green,
+              shape: BoxShape.circle,
+            ),
+            margin: const EdgeInsets.only(right: 25),
+            child: IconButton(
+              onPressed: sendMessage,
+              icon: const Icon(
+                Icons.arrow_upward,
+                color: Colors.white,
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

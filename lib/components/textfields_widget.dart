@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class TextFieldWidget extends StatelessWidget {
-  
   String hintText;
   final bool obscureText;
   final TextEditingController controller;
+  final FocusNode? focusNode;
 
-  TextFieldWidget(
-      {super.key,
-      required this.hintText,
-      required this.obscureText,
-      required this.controller});
-
+  TextFieldWidget({
+    super.key,
+    required this.hintText,
+    required this.obscureText,
+    required this.controller,
+    this.focusNode,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class TextFieldWidget extends StatelessWidget {
       child: TextField(
         obscureText: obscureText,
         controller: controller,
+        focusNode: focusNode,
         decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(

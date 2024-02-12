@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class ChatScreen extends StatelessWidget {
+class ChatScreen extends StatefulWidget {
   ChatScreen({
     super.key,
     required this.receiverEmail,
@@ -15,19 +15,69 @@ class ChatScreen extends StatelessWidget {
 
   String receiverEmail;
   String receiverID;
+
+  @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
   TextEditingController messageController = TextEditingController();
+
   final ChatServices _chatService = ChatServices();
+
   final AuthServices _authService = AuthServices();
+
+  FocusNode myFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    myFocusNode.addListener(
+      () {
+        if (myFocusNode.hasFocus) {
+          // cause a delay so that the keyboard has time to show up
+          // then the amount of remaining space will be calculated,
+          // then scroll down
+          Future.delayed(
+            const Duration(milliseconds: 500),
+            () => scrollDown(),
+          );
+        }
+      },
+    );
+    // wait a bit for listview to be build, then scroll to bottom
+    Future.delayed(
+      const Duration(milliseconds: 500),
+      () => scrollDown(),
+    );
+  }
+
+  @override
+  void dispose() {
+    myFocusNode.dispose();
+    messageController.dispose();
+    super.dispose();
+  }
+
+  final ScrollController _scrollController = ScrollController();
+  void scrollDown() {
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: const Duration(seconds: 1),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
 
   // send message
   void sendMessage() async {
     // if there is something inside the textfield
     if (messageController.text.isNotEmpty) {
       // send the message
-      await _chatService.sendMessage(receiverID, messageController.text);
+      await _chatService.sendMessage(widget.receiverID, messageController.text);
 
       messageController.clear();
     }
+    scrollDown();
   }
 
   @override
@@ -35,8 +85,8 @@ class ChatScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: Text(receiverEmail),
-        backgroundColor:Colors.transparent,
+        title: Text(widget.receiverEmail),
+        backgroundColor: Colors.transparent,
         foregroundColor: Colors.grey,
         elevation: 0,
       ),
@@ -56,7 +106,7 @@ class ChatScreen extends StatelessWidget {
   Widget _buildMessageList() {
     String senderID = _authService.getCurrentUser()!.uid;
     return StreamBuilder(
-      stream: _chatService.getMessages(receiverID, senderID),
+      stream: _chatService.getMessages(widget.receiverID, senderID),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Text("Error");
@@ -66,6 +116,7 @@ class ChatScreen extends StatelessWidget {
         }
 
         return ListView(
+          controller: _scrollController,
           children:
               snapshot.data!.docs.map((doc) => _buildMessageItem(doc)).toList(),
         );
@@ -108,6 +159,7 @@ class ChatScreen extends StatelessWidget {
               hintText: "Type a message",
               obscureText: false,
               controller: messageController,
+              focusNode: myFocusNode,
             ),
           ),
           Container(

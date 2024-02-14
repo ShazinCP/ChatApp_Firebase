@@ -1,7 +1,9 @@
-import 'package:chat_app/components/chatbubble_widget.dart';
-import 'package:chat_app/components/textfields_widget.dart';
+import 'package:chat_app/constants/colors.dart';
+import 'package:chat_app/constants/sizedbox.dart';
 import 'package:chat_app/services/auth/auth_services.dart';
 import 'package:chat_app/services/chat/chat_services.dart';
+import 'package:chat_app/view/chat_screen/widgets/chatbubble_widget.dart';
+import 'package:chat_app/widgets/textfields_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -86,13 +88,14 @@ class _ChatScreenState extends State<ChatScreen> {
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: Text(widget.receiverEmail),
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.grey,
+        backgroundColor: cTransparentColor,
+        foregroundColor: cGreyColor,
         elevation: 0,
       ),
       body: Column(
         children: [
           // display all messages
+          cHeight20,
           Expanded(
             child: _buildMessageList(),
           ),
@@ -151,7 +154,7 @@ class _ChatScreenState extends State<ChatScreen> {
   // build message input
   Widget _buildUserInput() {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 50.0),
+      padding: const EdgeInsets.only(bottom: 30.0),
       child: Row(
         children: [
           Expanded(
@@ -164,7 +167,7 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
           Container(
             decoration: const BoxDecoration(
-              color: Colors.green,
+              color: cGreenColor,
               shape: BoxShape.circle,
             ),
             margin: const EdgeInsets.only(right: 25),
@@ -172,7 +175,7 @@ class _ChatScreenState extends State<ChatScreen> {
               onPressed: sendMessage,
               icon: const Icon(
                 Icons.arrow_upward,
-                color: Colors.white,
+                color: cWhiteColor,
               ),
             ),
           )

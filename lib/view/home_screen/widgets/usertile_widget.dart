@@ -1,3 +1,4 @@
+import 'package:chat_app/constants/sizedbox.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -26,7 +27,7 @@ class UserTileWidget extends StatelessWidget {
         child: Row(
           children: [
             const Icon(Icons.person),
-            const SizedBox(width: 20),
+            cWidth20,
             Text(text),
           ],
         ),

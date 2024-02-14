@@ -1,6 +1,7 @@
-import 'package:chat_app/components/button_widget.dart';
-import 'package:chat_app/components/textfields_widget.dart';
+import 'package:chat_app/constants/sizedbox.dart';
 import 'package:chat_app/services/auth/auth_services.dart';
+import 'package:chat_app/widgets/button_widget.dart';
+import 'package:chat_app/widgets/textfields_widget.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -24,36 +25,36 @@ class RegisterScreen extends StatelessWidget {
             size: 60,
             color: Theme.of(context).colorScheme.primary,
           ),
-          const SizedBox(height: 50),
+          cHeight50,
           Text(
             "Let's create an account for you",
             style: TextStyle(
                 fontSize: 16, color: Theme.of(context).colorScheme.primary),
           ),
-          const SizedBox(height: 25),
+          cHeight25,
           TextFieldWidget(
             hintText: 'Email',
             obscureText: false,
             controller: _emailController,
           ),
-          const SizedBox(height: 10),
+          cHeight10,
           TextFieldWidget(
             hintText: 'Password',
             obscureText: true,
             controller: _passwordController,
           ),
-          const SizedBox(height: 10),
+          cHeight10,
           TextFieldWidget(
             hintText: 'Confirm Password',
             obscureText: true,
             controller: _confirmPasswordController,
           ),
-          const SizedBox(height: 25),
+          cHeight25,
           ButtonWidget(
             onTap: () => register(context),
             text: 'Register',
           ),
-          const SizedBox(height: 25),
+          cHeight25,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

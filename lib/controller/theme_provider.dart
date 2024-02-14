@@ -1,5 +1,5 @@
-import 'package:chat_app/themes/dark_mode.dart';
-import 'package:chat_app/themes/light_mode.dart';
+import 'package:chat_app/widgets/themes/dark_mode.dart';
+import 'package:chat_app/widgets/themes/light_mode.dart';
 import 'package:flutter/material.dart';
 
 class ThemeProvider extends ChangeNotifier {

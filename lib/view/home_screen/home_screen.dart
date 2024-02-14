@@ -1,8 +1,9 @@
-import 'package:chat_app/components/drawer_widget.dart';
-import 'package:chat_app/components/usertile_widget.dart';
+import 'package:chat_app/constants/colors.dart';
 import 'package:chat_app/services/auth/auth_services.dart';
 import 'package:chat_app/services/chat/chat_services.dart';
-import 'package:chat_app/view/chat_screen.dart';
+import 'package:chat_app/view/chat_screen/chat_screen.dart';
+import 'package:chat_app/view/home_screen/widgets/drawer_widget.dart';
+import 'package:chat_app/view/home_screen/widgets/usertile_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -17,9 +18,10 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: const Text("Home"),
-        backgroundColor:Colors.transparent,
-        foregroundColor: Colors.grey,
+        backgroundColor:cTransparentColor,
+        foregroundColor: cGreyColor,
         elevation: 0,
+        centerTitle: true,
       ),
       drawer: const DrawerWidget(),
       body: _buildUserList(),

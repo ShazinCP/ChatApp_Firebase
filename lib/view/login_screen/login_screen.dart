@@ -1,6 +1,7 @@
-import 'package:chat_app/components/button_widget.dart';
-import 'package:chat_app/components/textfields_widget.dart';
+import 'package:chat_app/constants/sizedbox.dart';
 import 'package:chat_app/services/auth/auth_services.dart';
+import 'package:chat_app/widgets/button_widget.dart';
+import 'package:chat_app/widgets/textfields_widget.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -23,30 +24,30 @@ class LoginScreen extends StatelessWidget {
             size: 60,
             color: Theme.of(context).colorScheme.primary,
           ),
-          const SizedBox(height: 50),
+          cHeight50,
           Text(
             "Welcome back, you've been missed!",
             style: TextStyle(
                 fontSize: 16, color: Theme.of(context).colorScheme.primary),
           ),
-          const SizedBox(height: 25),
+          cHeight25,
           TextFieldWidget(
             hintText: 'Email',
             obscureText: false,
             controller: _emailController,
           ),
-          const SizedBox(height: 10),
+          cHeight10,
           TextFieldWidget(
             hintText: 'Password',
             obscureText: true,
             controller: _passwordController,
           ),
-          const SizedBox(height: 25),
+          cHeight25,
           ButtonWidget(
             onTap: () => login(context),
             text: 'Login',
           ),
-          const SizedBox(height: 25),
+          cHeight25,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

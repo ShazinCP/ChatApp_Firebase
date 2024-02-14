@@ -1,4 +1,5 @@
-import 'package:chat_app/themes/theme_provider.dart';
+import 'package:chat_app/constants/colors.dart';
+import 'package:chat_app/controller/theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,8 +13,8 @@ class SettingsScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: const Text("Settings"),
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.grey,
+        backgroundColor: cTransparentColor,
+        foregroundColor: cGreyColor,
         elevation: 0,
       ),
       body: Container(

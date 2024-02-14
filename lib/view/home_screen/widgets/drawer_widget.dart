@@ -1,5 +1,5 @@
 import 'package:chat_app/services/auth/auth_services.dart';
-import 'package:chat_app/view/settings_screen.dart';
+import 'package:chat_app/view/settings_screen/settings_screen.dart';
 import 'package:flutter/material.dart';
 
 class DrawerWidget extends StatelessWidget {
